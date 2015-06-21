@@ -30,7 +30,7 @@ $('body').load('index.html', function() {
 	$(".gifs-container.collapse").show();
 	$(".gifs-container:not(.collapse)").hide();
 	$(".gifs-container.collapse").addClass('transition');
-},100);
+},50);
     
 
 });
