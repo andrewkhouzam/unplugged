@@ -61,8 +61,8 @@ body.collapse
 {	
 	position: absolute;
 	transition: transform 1s;
-	 transform: scale(4);
-  transform-origin: 0 0;
+	transform: scale(4);
+	transform-origin: 0 0;
 }
 .gifs-container.collapse.transition
 {
@@ -90,7 +90,6 @@ body.collapse
 	width: 402px;
 	height: 251px;
 	  transition: transform 2s;
-  /*transform: scale(0.5);*/
 	float: left;
 	cursor: pointer;
 }

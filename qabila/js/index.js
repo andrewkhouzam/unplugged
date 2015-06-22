@@ -1,75 +1,31 @@
-		$.ajax({
-	  url: "index.html",
-	  // context: document.body
-		}).success(function(r) {
-		  // console.log(r);
-
-	 		 index = $(r);
-				});
 
 $(document).ready(function(){
 		$(document).on("click", ".menu-outer", function(){
 
-	$(this).toggleClass('collapse');
-
-if($("body").hasClass('homepage')){
-
-	// redirecting from homepage to the collapsed page
-$('body').load('index.html', function() {
-    // callback runs when first load is finished
-    // $('#load').load('ajax/test2.html');
-    // console.log(true);
-    indexPageInit();
-
-    	setTimeout(function(){
-    		$(".menu-outer").addClass('collapse');
-	$("body").removeClass('homepage');
-	$("body").addClass("collapse");
-	$(".menu").addClass("collapse");
-	$(".menu img").attr("src","img/collapseMenuLines.png");
-	$(".gifs-container.collapse").show();
-	$(".gifs-container:not(.collapse)").hide();
-	$(".gifs-container.collapse").addClass('transition');
-},50);
-    
-
-});
-
-// 	console.log("Here");
-// 	$("body").html(index);
-// console.log("Here As Well ");
-	
-
-
-
-
-}
-else
+//Redirecting from the collapsed Menu to the last viewed page
+if($("body").hasClass('collapse'))
 {
 
-	if($(this).hasClass('collapse')){
-
-	$("body").addClass("collapse");
-	$(".menu").addClass("collapse");
-	$(".menu img").attr("src","img/collapseMenuLines.png");
-	$(".gifs-container.collapse").show();
-	$(".gifs-container:not(.collapse)").hide();
-	$(".gifs-container.collapse").addClass('transition');
-
-} else {
-	
-	$(".menu").removeClass("collapse");
-	$(".menu img").attr("src","img/menuLines.png");
-	
-	$(".gifs-container.collapse").removeClass('transition');
-	$(".container .gif-image:after").css("border","none");
-	setTimeout(function(){
-	$(".gifs-container:not(.collapse)").show();
-	$(".gifs-container.collapse").hide();
-	$("body").removeClass("collapse");
-	}
-	,1200);	
 }
+// redirecting from landingPage (index.html) to the collapsed page (collapsed.html)
+else if($("body").hasClass('landing'))
+{	
+	$('body').load('collapsed.html', function() {
+		$('body').removeClass();
+		$('body').addClass('collapse');
+		collapsedPageInit();
+		$(".gifs-container.collapse").addClass('transition');
+	});
+}
+// redirecting from homepage (homepage.html) to the collapsed page (collapsed.html)
+else if($("body").hasClass('homepage')){
+
+	$('body').load('collapsed.html', function() {
+		$('body').removeClass();
+		$('body').addClass('collapse');
+		collapsedPageInit();
+		$(".gifs-container.collapse").addClass('transition');
+	});
 }
 	})
 })
@@ -85,53 +41,22 @@ jQuery(document).ready(function($) {
 	})
 })
 
-
-
-//setting up the landing page and the collapsed page
-function indexPageInit() {
-			windowHeight = $(window).height();
-	windowWidth = $(window).width();
-
+function collapsedPageInit()
+{
+		windowHeight = $(window).height();
+		windowWidth = $(window).width();
 	ratio = windowHeight/windowWidth;
-
 	widthOfGif = ratio*windowWidth*0.25;
-	$(".gifs-container .container").css("width", windowWidth*0.25);
+		$(".gifs-container .container").css("width", windowWidth*0.25);
 		$(".gifs-container .container").css("height", widthOfGif );
+	numberOfGifImages = $('.gifs-container').children().length;	
+	widthOfGifContainer = numberOfGifImages*ratio*(windowWidth/2) ;
 
-		numberOfGifImages = $('.gifs-container').children().length;	
-	widthOfGifContainer = numberOfGifImages*ratio*500 ;
-	// console.log(widthOfGifContainer);
-	
-
-
-	$(".gifs-container.collapse").css("width",widthOfGifContainer);
-	$(".gifs-container.collapse").hide();
-	$("#circle").hide();
+		$(".gifs-container.collapse").css("width",widthOfGifContainer);
 }
 
-jQuery(document).ready(function($) {
-			windowHeight = $(window).height();
-	windowWidth = $(window).width();
 
-	ratio = windowHeight/windowWidth;
-
-	widthOfGif = ratio*windowWidth*0.25;
-	$(".gifs-container .container").css("width", windowWidth*0.25);
-		$(".gifs-container .container").css("height", widthOfGif );
-
-		numberOfGifImages = $('.gifs-container').children().length;	
-	widthOfGifContainer = numberOfGifImages*ratio*500 ;
-	// console.log(widthOfGifContainer);
-	
-
-
-	$(".gifs-container.collapse").css("width",widthOfGifContainer);
-	$(".gifs-container.collapse").hide();
-});
-
-
-
-//this is the redirection from the landing to the homepage
+//this is the redirection from the landing to the homepage using the Enter Button
 jQuery(document).ready(function($) {
 	$.ajax({
 	  url: "homepage.html",
@@ -139,17 +64,20 @@ jQuery(document).ready(function($) {
 	}).success(function(r) {
 	  // console.log(r);
 
-	  c = $(r);
+	  homepage = $(r);
 	});
 	$("#circle").click(function(event) {
 		/* Act on the event */
+	$("body").removeClass();	
 	$("body").addClass('homepage');
-	$("body").html(c);
+	$("body").html(homepage);
 
 	});
 });
 
 
+//TO DO this method again
+//Redirecting from the first small image in collapsed view to the bigger image
 jQuery(document).ready(function($) {
 	$(".gif-image#gif-1").click(function(event) {
 
