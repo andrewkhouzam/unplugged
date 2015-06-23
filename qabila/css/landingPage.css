@@ -60,13 +60,13 @@ body.collapse
 .gifs-container.collapse
 {	
 	position: absolute;
-	transition: transform 1s;
+	transition: transform 0.5s;
 	transform: scale(4);
 	transform-origin: 0 0;
 }
 .gifs-container.collapse.transition
 {
-	transition: transform 1s;
+	transition: transform 0.5s;
 	transform: scale(1.5) translate(200px,150px);
 }
 .container .gif-image:after
