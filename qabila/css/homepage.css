@@ -491,3 +491,25 @@ font-size: 90px;
 	opacity: 0;
 }*/
 
+.icon-left-open-1.unleash_prev
+{
+	  left: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 120px;
+}
+.icon-right-open-1.unleash_next
+{
+	right: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 120px;
+}
+.unleash_buttons i
+{
+	font-size: 80px;
+}
